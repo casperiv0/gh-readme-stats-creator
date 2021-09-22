@@ -9,7 +9,7 @@ interface Props {
 
 export const FormField = ({ label, fieldId, children }: Props) => {
   return (
-    <div className="mb-3 flex flex-col">
+    <div className="mb-3 flex flex-col w-full">
       <label className="mb-2" htmlFor={fieldId}>
         {label}
       </label>

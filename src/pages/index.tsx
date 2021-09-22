@@ -1,4 +1,3 @@
-import * as React from "react";
 import Head from "next/head";
 import { Formik } from "formik";
 
@@ -65,9 +64,45 @@ export default function Index() {
                 </Select>
               </FormField>
 
+              <FormRow justify={false}>
+                <FormField fieldId="custom-title" label="Custom Title">
+                  <Input id="custom-title" onChange={handleChange} />
+                </FormField>
+
+                <FormField fieldId="line-height" label="Custom Title">
+                  <Input type="number" id="line-height" onChange={handleChange} />
+                </FormField>
+              </FormRow>
+
               <FormRow>
                 <FormField fieldId="show-icons" label="Show Icons">
                   <Toggle name="show-icons" onClick={handleChange} toggled={values["show-icons"]} />
+                </FormField>
+
+                <FormField fieldId="hide-rank" label="Hide Rank">
+                  <Toggle name="hide-rank" onClick={handleChange} toggled={values["hide-rank"]} />
+                </FormField>
+
+                <FormField fieldId="hide-title" label="Hide Title">
+                  <Toggle name="hide-title" onClick={handleChange} toggled={values["hide-title"]} />
+                </FormField>
+
+                <FormField fieldId="disable-animations" label="Disable Animations">
+                  <Toggle
+                    name="disable-animations"
+                    onClick={handleChange}
+                    toggled={values["disable-animations"]}
+                  />
+                </FormField>
+              </FormRow>
+
+              <FormRow justify={false}>
+                <FormField fieldId="include-all-commits" label="Include All Commits">
+                  <Toggle
+                    name="include-all-commits"
+                    onClick={handleChange}
+                    toggled={values["include-all-commits"]}
+                  />
                 </FormField>
 
                 <FormField
@@ -78,14 +113,6 @@ export default function Index() {
                     name="count-private-contributions"
                     onClick={handleChange}
                     toggled={values["count-private-contributions"]}
-                  />
-                </FormField>
-
-                <FormField fieldId="disable-animations" label="Disable Animations">
-                  <Toggle
-                    name="disable-animations"
-                    onClick={handleChange}
-                    toggled={values["disable-animations"]}
                   />
                 </FormField>
               </FormRow>
