@@ -1,12 +1,3 @@
-# Next.js + TypeScript + ESLint
+# GitHub README Stats creator
 
-A simple Next.js app template.
-
-## Includes
-
-- Next.js basics
-- TypeScript
-- Sass (scss modules)
-- ESLint
-- Prettier
-- React -> Preact on production build.
+Create a [GitHub README stat card](https://github.com/anuraghazra/github-readme-stats) with ease! Check [it out here](https://gh-readme-stats-creator.vercel.app/)

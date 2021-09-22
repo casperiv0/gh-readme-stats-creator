@@ -1,13 +1,18 @@
+import * as React from "react";
 import Head from "next/head";
 import { Formik } from "formik";
 
+import type { GetStaticProps } from "next";
+import type { Values } from "types/Values";
+import type { Themes } from "types/Theme";
 import { Button } from "components/Button";
 import { FormField } from "components/FormField";
 import { Input } from "components/Input";
 import { Select } from "components/Select";
-import { Values } from "types/Values";
 import { Toggle } from "components/Toggle";
 import { FormRow } from "components/FormRow";
+import { generateBadgeUrl } from "lib/generator";
+import { Preview } from "components/Preview";
 
 const INITIAL_VALUES: Values = {
   "github-username": "",
@@ -19,18 +24,30 @@ const INITIAL_VALUES: Values = {
   "hide-rank": false,
   "hide-title": false,
   "include-all-commits": false,
-  "line-height": 15,
+  "line-height": 25,
 };
 
-export default function Index() {
-  function onSubmit(data: Values) {
-    console.log(data);
+interface Props {
+  themes: Themes;
+}
+
+export default function Index({ themes }: Props) {
+  const [url, setUrl] = React.useState<string | null>(null);
+
+  async function onSubmit(data: Values) {
+    setUrl(null);
+
+    await new Promise((resolve) => {
+      setTimeout(resolve, 200);
+    });
+
+    setUrl(() => generateBadgeUrl(data));
   }
 
   return (
     <>
       <Head>
-        <title>Hello world!</title>
+        <title>GitHub README Stats Creator</title>
       </Head>
 
       <div className="mt-5 mx-auto max-w-4xl">
@@ -57,20 +74,30 @@ export default function Index() {
                   name="theme"
                   required
                 >
-                  {/* todo: fetch all themes */}
-                  <option value="dark">Dark</option>
-                  <option value="light">Light</option>
-                  <option value="dark">Dark</option>
+                  {Object.entries(themes).map(([key]) => (
+                    <option value={key} key={key}>
+                      {key}
+                    </option>
+                  ))}
                 </Select>
               </FormField>
 
               <FormRow justify={false}>
                 <FormField fieldId="custom-title" label="Custom Title">
-                  <Input id="custom-title" onChange={handleChange} />
+                  <Input
+                    disabled={values["hide-title"]}
+                    id="custom-title"
+                    onChange={handleChange}
+                  />
                 </FormField>
 
-                <FormField fieldId="line-height" label="Custom Title">
-                  <Input type="number" id="line-height" onChange={handleChange} />
+                <FormField fieldId="line-height" label="Line Height">
+                  <Input
+                    value={values["line-height"]}
+                    type="number"
+                    id="line-height"
+                    onChange={handleChange}
+                  />
                 </FormField>
               </FormRow>
 
@@ -121,7 +148,21 @@ export default function Index() {
             </form>
           )}
         </Formik>
+
+        {url && <Preview url={url} />}
       </div>
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const { themes } = await fetch("http://localhost:3000/api/themes").then((v) => v.json());
+
+  return {
+    // revalidate every hour
+    revalidate: 60 * 60,
+    props: {
+      themes,
+    },
+  };
+};

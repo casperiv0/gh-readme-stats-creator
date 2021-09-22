@@ -15,7 +15,7 @@ interface Props {
 }
 
 export const Toggle = ({ name, toggled, onClick }: Props) => {
-  const defaultClassnames = "rounded-lg py-1 px-3 mr-1 transition-colors";
+  const defaultClassnames = "rounded-lg py-1 px-3 mr-1 transition-colors hover:bg-gray-400";
 
   return (
     <div>
