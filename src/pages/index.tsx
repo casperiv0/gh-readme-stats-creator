@@ -157,13 +157,15 @@ export default function Index({ themes }: Props) {
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const url = process.env.NEXT_PUBLIC_URL ?? "http://localhost:3000";
-  const { themes } = await fetch(`${url}/api/themes`).then((v) => v.json());
+  const data = await fetch(`${url}/api/themes`)
+    .then((v) => v.json())
+    .catch(() => null);
 
   return {
     // revalidate every hour
     revalidate: 60 * 60,
     props: {
-      themes,
+      themes: data?.themes ?? [],
     },
   };
 };
