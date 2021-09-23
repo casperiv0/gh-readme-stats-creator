@@ -75,10 +75,7 @@ export default function Index({ themes }: Props) {
                   name="github-username"
                   required
                 />
-                <Error
-                  touched={touched["github-username"]}
-                  message={errors["github-username"] && errors["github-username"]}
-                />
+                <Error touched={touched["github-username"]}>{errors["github-username"]}</Error>
               </FormField>
 
               <FormField fieldId="theme" label="Theme">
@@ -113,6 +110,7 @@ export default function Index({ themes }: Props) {
                     id="line-height"
                     onChange={handleChange}
                   />
+                  <Error touched={touched["line-height"]}>{errors["line-height"]}</Error>
                 </FormField>
               </FormRow>
 
@@ -176,10 +174,7 @@ export default function Index({ themes }: Props) {
                 <div className={showAdvanced ? "" : "hidden"}>
                   <FormField fieldId="custom-host-url" label="Custom host URL">
                     <Input onChange={handleChange} id="custom-host-url" type="url" />
-                    <Error
-                      touched={touched["custom-host-url"]}
-                      message={errors["custom-host-url"]}
-                    />
+                    <Error touched={touched["custom-host-url"]}>{errors["custom-host-url"]}</Error>
                   </FormField>
 
                   <h4 className="text-l font-semibold mb-2 mt-5">Custom Theme</h4>
@@ -190,10 +185,9 @@ export default function Index({ themes }: Props) {
                       label="Background Color"
                     >
                       <Input id="colors.bg_color" onChange={handleChange} />
-                      <Error
-                        touched={touched["colors.bg_color"]}
-                        message={errors["colors.bg_color"]}
-                      />
+                      <Error touched={touched["colors.bg_color"]}>
+                        {errors["colors.bg_color"]}
+                      </Error>
                     </FormField>
                     <FormField
                       includeMargin={false}
@@ -201,24 +195,21 @@ export default function Index({ themes }: Props) {
                       label="Border Color"
                     >
                       <Input id="colors.border_color" onChange={handleChange} />
-                      <Error
-                        touched={touched["colors.border_color"]}
-                        message={errors["colors.border_color"]}
-                      />
+                      <Error touched={touched["colors.border_color"]}>
+                        {errors["colors.border_color"]}
+                      </Error>
                     </FormField>
                     <FormField includeMargin={false} fieldId="colors.icon_color" label="Icon Color">
                       <Input id="colors.icon_color" onChange={handleChange} />
-                      <Error
-                        touched={touched["colors.icon_color"]}
-                        message={errors["colors.icon_color"]}
-                      />
+                      <Error touched={touched["colors.icon_color"]}>
+                        {errors["colors.icon_color"]}
+                      </Error>
                     </FormField>
                     <FormField includeMargin={false} fieldId="colors.text_color" label="Text Color">
                       <Input id="colors.text_color" onChange={handleChange} />
-                      <Error
-                        touched={touched["colors.text_color"]}
-                        message={errors["colors.text_color"]}
-                      />
+                      <Error touched={touched["colors.text_color"]}>
+                        {errors["colors.text_color"]}
+                      </Error>
                     </FormField>
                     <FormField
                       includeMargin={false}
@@ -226,10 +217,9 @@ export default function Index({ themes }: Props) {
                       label="Title Color"
                     >
                       <Input id="colors.title_color" onChange={handleChange} />
-                      <Error
-                        touched={touched["colors.title_color"]}
-                        message={errors["colors.title_color"]}
-                      />
+                      <Error touched={touched["colors.title_color"]}>
+                        {errors["colors.title_color"]}
+                      </Error>
                     </FormField>
                   </FormRow>
                 </div>

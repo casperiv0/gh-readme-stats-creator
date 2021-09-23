@@ -1,12 +1,14 @@
+import type * as React from "react";
+
 interface Props {
-  message?: string | false;
+  children?: React.ReactChild | undefined;
   touched?: boolean;
 }
 
-export const Error = ({ touched, message }: Props) => {
-  if (!touched && !message) {
+export const Error = ({ touched, children }: Props) => {
+  if (!touched && !children) {
     return null;
   }
 
-  return <span className="-mt-0 text-red-500">{message}</span>;
+  return <span className="-mt-0 text-red-500">{children}</span>;
 };
