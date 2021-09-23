@@ -5,4 +5,5 @@ export interface Theme {
   icon_color: string;
   text_color: string;
   bg_color: string;
+  border_color?: string;
 }

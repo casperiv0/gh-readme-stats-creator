@@ -12,14 +12,18 @@
   },
   "dependencies": {
     "formik": "^2.2.9",
+    "hex-color-regex": "^1.1.0",
     "next": "^11.1.2",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-bootstrap-icons": "^1.5.0",
+    "react-dom": "^17.0.2",
+    "zod": "^3.8.2"
   },
   "devDependencies": {
     "@casper124578/eslint-config": "^1.0.0",
     "@casper124578/eslint-config-next": "^0.1.1",
     "@casper124578/eslint-config-react": "^0.1.2",
+    "@types/hex-color-regex": "^1.1.1",
     "@types/react": "^17.0.24",
     "@types/react-dom": "^17.0.9",
     "autoprefixer": "^10.3.5",

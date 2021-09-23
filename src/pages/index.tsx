@@ -1,6 +1,7 @@
 import * as React from "react";
 import Head from "next/head";
 import { Formik } from "formik";
+import { ArrowDownShort } from "react-bootstrap-icons";
 
 import type { GetStaticProps } from "next";
 import type { Values } from "types/Values";
@@ -13,6 +14,8 @@ import { Toggle } from "components/Toggle";
 import { FormRow } from "components/FormRow";
 import { generateBadgeUrl } from "lib/generator";
 import { Preview } from "components/Preview";
+import { validate } from "lib/validation";
+import { Error } from "components/Error";
 
 const INITIAL_VALUES: Values = {
   "github-username": "",
@@ -26,6 +29,12 @@ const INITIAL_VALUES: Values = {
   "include-all-commits": false,
   "line-height": 25,
   "custom-host-url": "",
+
+  "colors.title_color": "",
+  "colors.icon_color": "",
+  "colors.text_color": "",
+  "colors.bg_color": "",
+  "colors.border_color": "",
 };
 
 interface Props {
@@ -52,11 +61,11 @@ export default function Index({ themes }: Props) {
         <title>GitHub README Stats Creator</title>
       </Head>
 
-      <div className="mt-5 mx-auto max-w-4xl">
+      <div className="mt-5 mx-auto max-w-5xl">
         <h1 className="text-2xl font-semibold">GitHub README Stats Creator</h1>
 
-        <Formik initialValues={INITIAL_VALUES} onSubmit={onSubmit}>
-          {({ values, handleBlur, handleSubmit, handleChange }) => (
+        <Formik validate={validate} initialValues={INITIAL_VALUES} onSubmit={onSubmit}>
+          {({ errors, touched, values, handleBlur, handleSubmit, handleChange }) => (
             <form className="mt-3" onSubmit={handleSubmit}>
               <FormField fieldId="github-username" label="GitHub Username">
                 <Input
@@ -65,6 +74,10 @@ export default function Index({ themes }: Props) {
                   onChange={handleChange}
                   name="github-username"
                   required
+                />
+                <Error
+                  touched={touched["github-username"]}
+                  message={errors["github-username"] && errors["github-username"]}
                 />
               </FormField>
 
@@ -149,30 +162,77 @@ export default function Index({ themes }: Props) {
               <div className="mb-3">
                 <h3
                   onClick={() => setAdvanced((o) => !o)}
-                  className="text-xl my-2 font-semibold cursor-pointer select-none"
+                  className="text-xl my-2 font-semibold cursor-pointer select-none flex items-center"
                 >
-                  Advanced Settings &rarr;
+                  Advanced Settings{" "}
+                  <span
+                    className="transition mr-2 mt-1"
+                    style={{ transform: `rotate(${showAdvanced ? "0deg" : "-90deg"})` }}
+                  >
+                    <ArrowDownShort />
+                  </span>
                 </h3>
 
-                {showAdvanced && (
-                  <>
-                    <FormField fieldId="custom-host-url" label="Custom host URL">
-                      <Input type="url" />
-                    </FormField>
+                <div className={showAdvanced ? "" : "hidden"}>
+                  <FormField fieldId="custom-host-url" label="Custom host URL">
+                    <Input onChange={handleChange} id="custom-host-url" type="url" />
+                    <Error
+                      touched={touched["custom-host-url"]}
+                      message={errors["custom-host-url"]}
+                    />
+                  </FormField>
 
-                    <FormRow>
-                      <FormField fieldId="custom-host-url" label="Theme">
-                        <Input />
-                      </FormField>
-                      <FormField fieldId="custom-host-url" label="Theme">
-                        <Input />
-                      </FormField>
-                      <FormField fieldId="custom-host-url" label="Theme">
-                        <Input />
-                      </FormField>
-                    </FormRow>
-                  </>
-                )}
+                  <h4 className="text-l font-semibold mb-2 mt-5">Custom Theme</h4>
+                  <FormRow gridLike>
+                    <FormField
+                      includeMargin={false}
+                      fieldId="colors.bg_color"
+                      label="Background Color"
+                    >
+                      <Input id="colors.bg_color" onChange={handleChange} />
+                      <Error
+                        touched={touched["colors.bg_color"]}
+                        message={errors["colors.bg_color"]}
+                      />
+                    </FormField>
+                    <FormField
+                      includeMargin={false}
+                      fieldId="colors.border_color"
+                      label="Border Color"
+                    >
+                      <Input id="colors.border_color" onChange={handleChange} />
+                      <Error
+                        touched={touched["colors.border_color"]}
+                        message={errors["colors.border_color"]}
+                      />
+                    </FormField>
+                    <FormField includeMargin={false} fieldId="colors.icon_color" label="Icon Color">
+                      <Input id="colors.icon_color" onChange={handleChange} />
+                      <Error
+                        touched={touched["colors.icon_color"]}
+                        message={errors["colors.icon_color"]}
+                      />
+                    </FormField>
+                    <FormField includeMargin={false} fieldId="colors.text_color" label="Text Color">
+                      <Input id="colors.text_color" onChange={handleChange} />
+                      <Error
+                        touched={touched["colors.text_color"]}
+                        message={errors["colors.text_color"]}
+                      />
+                    </FormField>
+                    <FormField
+                      includeMargin={false}
+                      fieldId="colors.title_color"
+                      label="Title Color"
+                    >
+                      <Input id="colors.title_color" onChange={handleChange} />
+                      <Error
+                        touched={touched["colors.title_color"]}
+                        message={errors["colors.title_color"]}
+                      />
+                    </FormField>
+                  </FormRow>
+                </div>
               </div>
 
               <Button type="submit">Generate Badge!</Button>
