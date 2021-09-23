@@ -25,6 +25,7 @@ const INITIAL_VALUES: Values = {
   "hide-title": false,
   "include-all-commits": false,
   "line-height": 25,
+  "custom-host-url": "",
 };
 
 interface Props {
@@ -32,6 +33,7 @@ interface Props {
 }
 
 export default function Index({ themes }: Props) {
+  const [showAdvanced, setAdvanced] = React.useState<boolean>(false);
   const [url, setUrl] = React.useState<string | null>(null);
 
   async function onSubmit(data: Values) {
@@ -143,6 +145,35 @@ export default function Index({ themes }: Props) {
                   />
                 </FormField>
               </FormRow>
+
+              <div className="mb-3">
+                <h3
+                  onClick={() => setAdvanced((o) => !o)}
+                  className="text-xl my-2 font-semibold cursor-pointer select-none"
+                >
+                  Advanced Settings &rarr;
+                </h3>
+
+                {showAdvanced && (
+                  <>
+                    <FormField fieldId="custom-host-url" label="Custom host URL">
+                      <Input type="url" />
+                    </FormField>
+
+                    <FormRow>
+                      <FormField fieldId="custom-host-url" label="Theme">
+                        <Input />
+                      </FormField>
+                      <FormField fieldId="custom-host-url" label="Theme">
+                        <Input />
+                      </FormField>
+                      <FormField fieldId="custom-host-url" label="Theme">
+                        <Input />
+                      </FormField>
+                    </FormRow>
+                  </>
+                )}
+              </div>
 
               <Button type="submit">Generate Badge!</Button>
             </form>

@@ -9,4 +9,5 @@ export interface Values {
   "line-height": number;
   "custom-title": string;
   "disable-animations": boolean;
+  "custom-host-url": string;
 }
