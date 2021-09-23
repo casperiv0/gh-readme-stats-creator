@@ -15,7 +15,7 @@ interface Props {
 }
 
 export const Toggle = ({ name, toggled, onClick }: Props) => {
-  const defaultClassnames = "rounded-lg py-1 px-3 mr-1 transition-colors hover:bg-gray-400";
+  const defaultClassnames = "rounded-lg py-1 px-3 mr-1 transition-colors";
 
   return (
     <div>
@@ -23,7 +23,9 @@ export const Toggle = ({ name, toggled, onClick }: Props) => {
         onClick={() => onClick({ target: { name, value: true } })}
         type="button"
         className={`${defaultClassnames} ${
-          toggled === true ? "bg-gray-500 text-white" : "bg-gray-300"
+          toggled === true
+            ? "bg-gray-500 text-white hover:bg-gray-600"
+            : "bg-gray-300 hover:bg-gray-400"
         }`}
       >
         On
@@ -32,7 +34,9 @@ export const Toggle = ({ name, toggled, onClick }: Props) => {
         onClick={() => onClick({ target: { name, value: false } })}
         type="button"
         className={`${defaultClassnames} ${
-          toggled === false ? "bg-gray-500 text-white" : "bg-gray-300"
+          toggled === false
+            ? "bg-gray-500 text-white hover:bg-gray-600"
+            : "bg-gray-300 hover:bg-gray-400"
         }`}
       >
         Off
