@@ -14,16 +14,27 @@ const urlParams: Record<keyof Values, string> = {
   "line-height": "line_height",
   "show-icons": "show_icons",
   theme: "theme",
+  "colors.bg_color": "bg_color",
+  "colors.border_color": "border_color",
+  "colors.icon_color": "icon_color",
+  "colors.text_color": "text_color",
+  "colors.title_color": "title_color",
+  "custom-host-url": "",
 };
 
 export function generateBadgeUrl(data: Values) {
   const searchParams = new URLSearchParams();
+  const url = data["custom-host-url"] || GITHUB_URL;
 
   for (const key in data) {
-    if (data[key]) {
-      searchParams.append(urlParams[key], data[key]);
+    let value = data[key];
+    if (value && urlParams[key]) {
+      if (typeof value === "string" && value.startsWith("#")) {
+        value = value.replace("#", "");
+      }
+      searchParams.append(urlParams[key], value);
     }
   }
 
-  return `${GITHUB_URL}?${searchParams.toString()}`;
+  return `${url}?${searchParams.toString()}`;
 }
