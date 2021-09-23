@@ -65,7 +65,7 @@ export default function Index({ themes }: Props) {
         <h1 className="text-2xl font-semibold">GitHub README Stats Creator</h1>
 
         <Formik validate={validate} initialValues={INITIAL_VALUES} onSubmit={onSubmit}>
-          {({ errors, touched, values, handleBlur, handleSubmit, handleChange }) => (
+          {({ errors, touched, values, resetForm, handleBlur, handleSubmit, handleChange }) => (
             <form className="mt-3" onSubmit={handleSubmit}>
               <FormField fieldId="github-username" label="GitHub Username">
                 <Input
@@ -239,8 +239,11 @@ export default function Index({ themes }: Props) {
                 Generate Badge!
               </Button>
               <Button
-                onClick={() => setUrl(null)}
-                className="ml-2 bg-white text-red-500 hover:bg-red-500 hover:text-white focus:bg-red-500 focus:text-white"
+                onClick={() => {
+                  resetForm();
+                  setUrl(null);
+                }}
+                className="ml-2 bg-transparent dark:bg-transparent text-red-500 hover:bg-red-500 dark:hover:bg-red-500 hover:text-white focus:bg-red-500 dark:focus:bg-red-500 focus:text-white"
                 type="reset"
               >
                 Reset

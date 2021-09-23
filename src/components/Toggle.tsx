@@ -24,8 +24,8 @@ export const Toggle = ({ name, toggled, onClick }: Props) => {
         type="button"
         className={`${defaultClassnames} ${
           toggled === true
-            ? "bg-gray-500 text-white hover:bg-gray-600"
-            : "bg-gray-300 hover:bg-gray-400"
+            ? "bg-gray-500 text-white dark:bg-[#6d6d6d]"
+            : "bg-gray-300  dark:bg-[#2f2f2f]"
         }`}
       >
         On
@@ -35,8 +35,8 @@ export const Toggle = ({ name, toggled, onClick }: Props) => {
         type="button"
         className={`${defaultClassnames} ${
           toggled === false
-            ? "bg-gray-500 text-white hover:bg-gray-600"
-            : "bg-gray-300 hover:bg-gray-400"
+            ? "bg-gray-500 text-white dark:bg-[#6d6d6d]"
+            : "bg-gray-300  dark:bg-[#2f2f2f]"
         }`}
       >
         Off

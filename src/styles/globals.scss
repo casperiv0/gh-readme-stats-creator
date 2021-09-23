@@ -5,6 +5,10 @@
     "Open Sans", "Helvetica Neue", sans-serif;
 }
 
+body {
+  @apply bg-white dark:bg-[#1a1a1a] text-black dark:text-white;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
