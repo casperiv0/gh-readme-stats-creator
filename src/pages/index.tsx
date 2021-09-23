@@ -235,7 +235,16 @@ export default function Index({ themes }: Props) {
                 </div>
               </div>
 
-              <Button type="submit">Generate Badge!</Button>
+              <Button disabled={!(Object.keys(errors).length <= 0)} type="submit">
+                Generate Badge!
+              </Button>
+              <Button
+                onClick={() => setUrl(null)}
+                className="ml-2 bg-white text-red-500 hover:bg-red-500 hover:text-white focus:bg-red-500 focus:text-white"
+                type="reset"
+              >
+                Reset
+              </Button>
             </form>
           )}
         </Formik>
