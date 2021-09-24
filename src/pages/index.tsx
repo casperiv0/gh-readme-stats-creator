@@ -61,7 +61,7 @@ export default function Index({ themes }: Props) {
         <title>GitHub README Stats Creator</title>
       </Head>
 
-      <div className="mt-5 mx-auto max-w-5xl">
+      <div className="mt-5 p-5 mx-auto max-w-5xl">
         <h1 className="text-2xl font-semibold">GitHub README Stats Creator</h1>
 
         <Formik validate={validate} initialValues={INITIAL_VALUES} onSubmit={onSubmit}>
@@ -94,7 +94,7 @@ export default function Index({ themes }: Props) {
                 </Select>
               </FormField>
 
-              <FormRow justify={false}>
+              <FormRow flexLike>
                 <FormField fieldId="custom-title" label="Custom Title">
                   <Input
                     disabled={values["hide-title"]}
@@ -178,7 +178,7 @@ export default function Index({ themes }: Props) {
                   </FormField>
 
                   <h4 className="text-l font-semibold mb-2 mt-5">Custom Theme</h4>
-                  <FormRow gridLike>
+                  <FormRow>
                     <FormField
                       includeMargin={false}
                       fieldId="colors.bg_color"
