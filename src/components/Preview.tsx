@@ -13,9 +13,13 @@ export const Preview = ({ url }: Props) => {
     setCopied(true);
     navigator.clipboard.writeText(url);
 
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       setCopied(false);
     }, 2_000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
   }
 
   return (

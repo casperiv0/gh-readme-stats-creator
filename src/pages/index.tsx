@@ -85,13 +85,9 @@ export default function Index({ themes }: Props) {
                   onChange={handleChange}
                   name="theme"
                   required
-                >
-                  {Object.entries(themes).map(([key]) => (
-                    <option value={key} key={key}>
-                      {key}
-                    </option>
-                  ))}
-                </Select>
+                  themes={themes}
+                  value={values.theme}
+                />
               </FormField>
 
               <FormRow flexLike>
