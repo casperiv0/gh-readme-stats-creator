@@ -6,6 +6,9 @@
 module.exports = {
   cleanDistDir: true,
   reactStrictMode: true,
+  images: {
+    domains: ["github-readme-stats.vercel.app"],
+  },
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
       config.resolve.alias = {

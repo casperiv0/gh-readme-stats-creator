@@ -1,7 +1,6 @@
 import type { Values } from "types/Values";
 
-// todo: allow providing custom URL
-const GITHUB_URL = "https://github-readme-stats.vercel.app/api";
+export const GITHUB_URL = "https://github-readme-stats.vercel.app/api";
 
 const urlParams: Record<keyof Values, string> = {
   "count-private-contributions": "count_private",
