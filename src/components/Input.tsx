@@ -1,6 +1,6 @@
 import * as React from "react";
 
-type Props = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
+type Props = JSX.IntrinsicElements["input"];
 
 export const Input = React.forwardRef<HTMLInputElement, Props>(
   ({ className = "", ...rest }, ref) => {

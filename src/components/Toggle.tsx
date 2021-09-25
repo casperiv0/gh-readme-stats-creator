@@ -14,18 +14,34 @@ interface Props {
   name: keyof Values;
 }
 
+enum Directions {
+  RIGHT = 0,
+  LEFT = 100,
+}
+
 export const Toggle = ({ name, toggled, onClick }: Props) => {
-  const defaultClassnames = "rounded-lg py-1 px-3 mr-1 transition-colors";
+  const [x, setX] = React.useState(-50);
+
+  React.useEffect(() => {
+    if (toggled === true) {
+      setX(Directions.RIGHT);
+    } else {
+      setX(Directions.LEFT);
+    }
+  }, [toggled]);
 
   return (
-    <div>
+    <div className="bg-gray-300 dark:bg-[#2f2f2f] w-28 flex items-center justify-between gap-2 rounded-lg relative overflow-hidden">
+      <div
+        style={{ transform: `translateX(${x}%)` }}
+        className="absolute bg-gray-500 dark:bg-[#6d6d6db7] h-10 w-14 pointer-events-none transition-all duration-100"
+      />
+
       <button
         onClick={() => onClick({ target: { name, value: true } })}
         type="button"
-        className={`${defaultClassnames} ${
-          toggled === true
-            ? "bg-gray-500 text-white dark:bg-[#6d6d6d]"
-            : "bg-gray-300  dark:bg-[#2f2f2f]"
+        className={`w-full h-full p-2 px-3 cursor-pointer pointer-events-auto z-10 ${
+          toggled && "text-white"
         }`}
       >
         On
@@ -33,10 +49,8 @@ export const Toggle = ({ name, toggled, onClick }: Props) => {
       <button
         onClick={() => onClick({ target: { name, value: false } })}
         type="button"
-        className={`${defaultClassnames} ${
-          toggled === false
-            ? "bg-gray-500 text-white dark:bg-[#6d6d6d]"
-            : "bg-gray-300  dark:bg-[#2f2f2f]"
+        className={`w-full h-full p-2 px-3 cursor-pointer pointer-events-auto z-10 ${
+          !toggled && "text-white"
         }`}
       >
         Off

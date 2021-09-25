@@ -5,14 +5,11 @@ import onClickOutside from "react-cool-onclickoutside";
 import { Themes } from "types/Theme";
 import { Input } from "./Input";
 
-type Props = React.DetailedHTMLProps<
-  React.SelectHTMLAttributes<HTMLSelectElement>,
-  HTMLSelectElement
-> & {
+type Props = Pick<JSX.IntrinsicElements["select"], "onChange" | "value" | "name" | "id"> & {
   themes: Themes;
 };
 
-export const Select = ({ onChange, value, name, themes }: Props) => {
+export const Select = ({ onChange, id, value, name, themes }: Props) => {
   const [search, setSearch] = React.useState("");
   const [selected, setSelected] = React.useState("default");
   const [isOpen, setOpen] = React.useState(false);
@@ -42,7 +39,7 @@ export const Select = ({ onChange, value, name, themes }: Props) => {
   }, [isOpen]);
 
   return (
-    <div className={"relative"}>
+    <div id={id} className={"relative"}>
       <button
         id="theme"
         ref={ref}
@@ -58,7 +55,7 @@ export const Select = ({ onChange, value, name, themes }: Props) => {
       {isOpen && (
         <ul
           ref={ref}
-          className="absolute w-full top-12 bg-gray-200 dark:bg-[#2f2f2f] rounded-lg p-2 pt-0 z-10 max-h-72 overflow-auto shadow-md"
+          className="absolute w-full top-12 bg-gray-200 dark:bg-[#2f2f2f] rounded-lg p-2 pt-0 z-20 max-h-80 overflow-auto shadow-md"
         >
           <div className="sticky top-0 pt-2 bg-gray-200 dark:bg-[#2f2f2f]">
             <Input
@@ -77,7 +74,7 @@ export const Select = ({ onChange, value, name, themes }: Props) => {
                 onClick={() => handleSelected(key)}
                 key={key}
                 className={`flex justify-between items-center transition-colors w-full p-2 cursor-pointer hover:bg-gray-300 focus:bg-gray-300 dark:hover:bg-[#444444] dark:focus:bg-[#444444] rounded-lg my-1 ${
-                  isSelected(key) ? "bg-gray-300 dark:bg-[#444444] font-semibold" : "font-normal"
+                  isSelected(key) ? "bg-gray-300 dark:bg-[#444444] font-medium" : "font-normal"
                 }`}
               >
                 {normalizeText(key)}

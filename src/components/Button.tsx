@@ -1,9 +1,6 @@
 import type * as React from "react";
 
-type Props = React.DetailedHTMLProps<
-  React.ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
->;
+type Props = JSX.IntrinsicElements["button"];
 
 export const Button = ({ className = "", ...rest }: Props) => {
   return (

@@ -81,10 +81,8 @@ export default function Index({ themes }: Props) {
               <FormField fieldId="theme" label="Theme">
                 <Select
                   id="theme"
-                  onBlur={handleBlur}
                   onChange={handleChange}
                   name="theme"
-                  required
                   themes={themes}
                   value={values.theme}
                 />
@@ -222,7 +220,7 @@ export default function Index({ themes }: Props) {
               </div>
 
               <Button disabled={!(Object.keys(errors).length <= 0)} type="submit">
-                Generate Badge!
+                Create Badge!
               </Button>
               <Button
                 onClick={() => {
