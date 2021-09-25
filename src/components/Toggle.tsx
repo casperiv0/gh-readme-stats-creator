@@ -15,8 +15,8 @@ interface Props {
 }
 
 enum Directions {
-  RIGHT = 0,
-  LEFT = 100,
+  RIGHT = 20,
+  LEFT = 150,
 }
 
 export const Toggle = ({ name, toggled, onClick }: Props) => {
@@ -27,16 +27,16 @@ export const Toggle = ({ name, toggled, onClick }: Props) => {
   }, [toggled]);
 
   return (
-    <div className="bg-gray-300 dark:bg-dark-gray w-28 flex items-center justify-between gap-2 rounded-lg relative overflow-hidden">
+    <div className="bg-gray-300 dark:bg-dark-gray w-[120px] flex items-center justify-between gap-2 rounded-lg relative overflow-hidden">
       <div
         style={{ transform: `translateX(${x}%)` }}
-        className="absolute bg-gray-500 dark:bg-[#6d6d6db7] h-10 w-14 pointer-events-none transition-all duration-100"
+        className="absolute bg-gray-500 dark:bg-[#6d6d6db7] h-8 w-11 rounded-lg pointer-events-none transition-all duration-100"
       />
 
       <button
         onClick={() => onClick({ target: { name, value: true } })}
         type="button"
-        className={`w-full h-full p-2 px-3 cursor-pointer pointer-events-auto z-10 ${
+        className={`w-full p-2 px-3 pl-5 cursor-pointer pointer-events-auto z-10 ${
           toggled && "text-white"
         }`}
       >
@@ -45,7 +45,7 @@ export const Toggle = ({ name, toggled, onClick }: Props) => {
       <button
         onClick={() => onClick({ target: { name, value: false } })}
         type="button"
-        className={`w-full h-full p-2 px-3 cursor-pointer pointer-events-auto z-10 ${
+        className={`w-full h-full p-2 px-3 pr-5 cursor-pointer pointer-events-auto z-10 ${
           !toggled && "text-white"
         }`}
       >

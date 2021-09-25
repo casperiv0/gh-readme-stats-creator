@@ -156,7 +156,7 @@ export default function Index({ themes }: Props) {
                   onClick={() => setAdvanced((o) => !o)}
                   className="text-xl my-2 font-semibold cursor-pointer select-none flex items-center"
                 >
-                  Advanced Settings{" "}
+                  Advanced Settings
                   <span
                     className="transition mr-2 mt-1"
                     style={{ transform: `rotate(${showAdvanced ? "0deg" : "-90deg"})` }}
