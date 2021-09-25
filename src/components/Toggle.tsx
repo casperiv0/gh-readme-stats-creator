@@ -20,14 +20,10 @@ enum Directions {
 }
 
 export const Toggle = ({ name, toggled, onClick }: Props) => {
-  const [x, setX] = React.useState(-50);
+  const [x, setX] = React.useState(() => getDirection(toggled));
 
   React.useEffect(() => {
-    if (toggled === true) {
-      setX(Directions.RIGHT);
-    } else {
-      setX(Directions.LEFT);
-    }
+    setX(getDirection(toggled));
   }, [toggled]);
 
   return (
@@ -58,3 +54,11 @@ export const Toggle = ({ name, toggled, onClick }: Props) => {
     </div>
   );
 };
+
+function getDirection(toggled: boolean) {
+  if (toggled === true) {
+    return Directions.RIGHT;
+  }
+
+  return Directions.LEFT;
+}
