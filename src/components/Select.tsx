@@ -1,6 +1,6 @@
 import { normalizeText } from "lib/utils";
 import * as React from "react";
-import { Check } from "react-bootstrap-icons";
+import { Check, ChevronDown } from "react-bootstrap-icons";
 import onClickOutside from "react-cool-onclickoutside";
 import { Themes } from "types/Theme";
 import { Input } from "./Input";
@@ -43,21 +43,28 @@ export const Select = ({ onChange, id, value, name, themes }: Props) => {
       <button
         id="theme"
         ref={ref}
-        className={`text-left p-2 px-3 w-full border-2 border-gray-300 rounded-lg focus:border-gray-500 transition-colors dark:border-[#4e4e4e] dark:bg-[#2f2f2f] ${
+        className={`flex items-center justify-between text-left p-2 px-3 w-full border-2 border-gray-300 rounded-lg focus:border-gray-500 transition-colors dark:border-[#4e4e4e] dark:bg-dark-gray ${
           isOpen ? "border-black dark:border-gray-400" : ""
         }`}
         type="button"
         onClick={() => setOpen((o) => !o)}
       >
         {normalizeText(selected)}
+
+        <span>
+          <ChevronDown
+            className="transition-all duration-200"
+            style={{ transform: `rotate(${isOpen ? 180 : 0}deg)` }}
+          />
+        </span>
       </button>
 
       {isOpen && (
         <ul
           ref={ref}
-          className="absolute w-full top-12 bg-gray-200 dark:bg-[#2f2f2f] rounded-lg p-2 pt-0 z-20 max-h-80 overflow-auto shadow-md"
+          className="absolute w-full top-12 bg-gray-200 dark:bg-dark-gray rounded-lg p-2 pt-0 z-20 max-h-80 overflow-auto shadow-md"
         >
-          <div className="sticky top-0 pt-2 bg-gray-200 dark:bg-[#2f2f2f]">
+          <div className="sticky top-0 pt-2 bg-gray-200 dark:bg-dark-gray">
             <Input
               placeholder="Search themes.."
               className="w-full mb-1 pt-1"
@@ -73,8 +80,8 @@ export const Select = ({ onChange, id, value, name, themes }: Props) => {
               <button
                 onClick={() => handleSelected(key)}
                 key={key}
-                className={`flex justify-between items-center transition-colors w-full p-2 cursor-pointer hover:bg-gray-300 focus:bg-gray-300 dark:hover:bg-[#444444] dark:focus:bg-[#444444] rounded-lg my-1 ${
-                  isSelected(key) ? "bg-gray-300 dark:bg-[#444444] font-medium" : "font-normal"
+                className={`flex justify-between items-center transition-colors w-full p-2 cursor-pointer hover:bg-gray-300 focus:bg-gray-300 dark:hover:bg-light-gray dark:focus:bg-light-gray rounded-lg my-1 ${
+                  isSelected(key) ? "bg-gray-300 dark:bg-light-gray font-medium" : "font-normal"
                 }`}
               >
                 {normalizeText(key)}

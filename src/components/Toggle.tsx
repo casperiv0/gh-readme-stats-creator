@@ -27,7 +27,7 @@ export const Toggle = ({ name, toggled, onClick }: Props) => {
   }, [toggled]);
 
   return (
-    <div className="bg-gray-300 dark:bg-[#2f2f2f] w-28 flex items-center justify-between gap-2 rounded-lg relative overflow-hidden">
+    <div className="bg-gray-300 dark:bg-dark-gray w-28 flex items-center justify-between gap-2 rounded-lg relative overflow-hidden">
       <div
         style={{ transform: `translateX(${x}%)` }}
         className="absolute bg-gray-500 dark:bg-[#6d6d6db7] h-10 w-14 pointer-events-none transition-all duration-100"
