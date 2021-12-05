@@ -2,7 +2,7 @@
   "name": "remix-app",
   "version": "0.0.0",
   "license": "MIT",
-  "description": "Create a GitHub README stat card with ease! ",
+  "description": "Create a GitHub README stat card with ease!",
   "scripts": {
     "clean": "rimraf ./node_modules/.cache ./.cache ./server/dist ./build ./public/build",
     "prebuild": "npm run clean && echo All clean ✨",
@@ -12,9 +12,13 @@
     "dev": "concurrently \"npm run watch:css\" \"npm run dev:remix\"",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,css,json}\" --ignore-path .gitignore",
     "lint": "eslint . --ext .ts,.js,.tsx,.jsx,",
-    "postinstall": "npx remix setup node"
+    "postinstall": "npx remix setup node",
+    "build:remix": "remix build",
+    "build": "npm run build:css && npm run build:remix",
+    "start": "remix-serve api/build"
   },
   "dependencies": {
+    "@react-aria/focus": "^3.5.0",
     "@react-aria/label": "^3.2.1",
     "@react-aria/ssr": "^3.1.0",
     "@react-aria/switch": "^3.1.3",

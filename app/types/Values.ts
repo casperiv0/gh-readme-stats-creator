@@ -8,7 +8,7 @@ export type Values = {
   "include-all-commits": boolean;
   "line-height": number;
   "custom-title": string;
-  animations: boolean;
+  "disable-animations": boolean;
   "custom-host-url": string;
   "colors.title_color": string;
   "colors.icon_color": string;

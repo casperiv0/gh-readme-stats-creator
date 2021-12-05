@@ -89,19 +89,13 @@ export default function App() {
               </Switch>
             </FormField>
 
-            <FormField label="Animations">
-              <Switch defaultSelected name="animations">
-                Animations
-              </Switch>
+            <FormField label="Disable Animations">
+              <Switch name="disable-animations">Disable Animations</Switch>
             </FormField>
 
-            <FormField label="Custom Title">
-              <Switch
-                defaultSelected
-                name="custom-title"
-                onChange={(v) => handleField("custom-title", !v)}
-              >
-                Custom Title
+            <FormField label="Hide Title">
+              <Switch name="hide-title" onChange={(v) => handleField("custom-title", v)}>
+                Hide Title
               </Switch>
             </FormField>
 
@@ -125,7 +119,7 @@ export default function App() {
           </Row>
 
           <Button disabled={state !== "idle"} type="submit">
-            Generate!
+            Generate preview
           </Button>
         </Form>
 

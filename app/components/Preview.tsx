@@ -27,7 +27,7 @@ export const Preview = ({ url }: Props) => {
 
     const timeout = setTimeout(() => {
       setCopied(false);
-    }, 2_000);
+    }, 1_000);
 
     return () => {
       clearTimeout(timeout);

@@ -5,7 +5,7 @@ export const GITHUB_URL = "https://github-readme-stats.vercel.app/api";
 const urlParams: Record<keyof Values, string> = {
   "count-private-contributions": "count_private",
   "custom-title": "custom_title",
-  animations: "disable_animations",
+  "disable-animations": "disable_animations",
   "github-username": "username",
   "hide-rank": "hide_rank",
   "hide-title": "hide_title",
@@ -42,7 +42,7 @@ export function parseValues(data: URLSearchParams): Values {
   const numberKeys: (keyof Values)[] = ["line-height"];
   const booleanKeys: (keyof Values)[] = [
     "show-icons",
-    "animations",
+    "disable-animations",
     "count-private-contributions",
     "include-all-commits",
     "hide-rank",
@@ -62,11 +62,7 @@ export function parseValues(data: URLSearchParams): Values {
   booleanKeys.map((key) => {
     const v = data.get(key);
     if (v === "") {
-      if (key === "animations") {
-        obj[key] = false;
-      } else {
-        obj[key] = true;
-      }
+      obj[key] = true;
     }
   });
 
