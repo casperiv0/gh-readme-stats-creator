@@ -1,15 +1,15 @@
-import { normalizeText } from "lib/utils";
+import { normalizeText } from "~/utils/utils";
 import * as React from "react";
 import { Check, ChevronDown } from "react-bootstrap-icons";
 import onClickOutside from "react-cool-onclickoutside";
-import { Themes } from "types/Theme";
+import { Themes } from "~/types/Theme";
 import { Input } from "./Input";
 
-type Props = Pick<JSX.IntrinsicElements["select"], "onChange" | "value" | "name" | "id"> & {
+type Props = Pick<JSX.IntrinsicElements["select"], "name"> & {
   themes: Themes;
 };
 
-export const Select = ({ onChange, id, value, name, themes }: Props) => {
+export const Select = ({ name, themes }: Props) => {
   const [search, setSearch] = React.useState("");
   const [selected, setSelected] = React.useState("default");
   const [isOpen, setOpen] = React.useState(false);
@@ -24,22 +24,18 @@ export const Select = ({ onChange, id, value, name, themes }: Props) => {
   }, [themes, search]);
 
   function handleSelected(key: string) {
-    onChange?.({ target: { name, value: key } } as any);
+    setSelected(key);
 
     setSearch("");
     setOpen(false);
   }
 
   React.useEffect(() => {
-    value && setSelected(value.toString());
-  }, [value]);
-
-  React.useEffect(() => {
     isOpen && inputRef.current && inputRef.current?.focus();
   }, [isOpen]);
 
   return (
-    <div id={id} className={"relative"}>
+    <div className={"relative"}>
       <button
         id="theme"
         ref={ref}
@@ -53,6 +49,7 @@ export const Select = ({ onChange, id, value, name, themes }: Props) => {
 
         <span>
           <ChevronDown
+            aria-label={isOpen ? "Close menu" : "Open menu"}
             className="transition-all duration-200"
             style={{ transform: `rotate(${isOpen ? 180 : 0}deg)` }}
           />
@@ -62,12 +59,12 @@ export const Select = ({ onChange, id, value, name, themes }: Props) => {
       {isOpen && (
         <ul
           ref={ref}
-          className="absolute w-full top-12 bg-gray-200 dark:bg-dark-gray rounded-lg p-2 pt-0 z-20 max-h-80 overflow-auto shadow-md"
+          className="absolute z-20 w-full p-2 pt-0 overflow-auto bg-gray-200 rounded-lg shadow-md top-12 dark:bg-dark-gray max-h-80"
         >
           <div className="sticky top-0 pt-2 bg-gray-200 dark:bg-dark-gray">
             <Input
               placeholder="Search themes.."
-              className="w-full mb-1 pt-1"
+              className="w-full pt-1 mb-1"
               onChange={(e) => setSearch(e.target.value)}
               ref={inputRef}
             />
@@ -86,12 +83,20 @@ export const Select = ({ onChange, id, value, name, themes }: Props) => {
               >
                 {normalizeText(key)}
 
-                <span>{isSelected(key) && <Check width="25px" height="25px" />}</span>
+                {isSelected(key) ? (
+                  <span>
+                    <Check width="25px" height="25px" />
+                  </span>
+                ) : null}
               </button>
             ))
           )}
         </ul>
       )}
+
+      <select className="hidden" defaultValue={selected} name={name}>
+        <option value={selected}>{selected}</option>
+      </select>
     </div>
   );
 };

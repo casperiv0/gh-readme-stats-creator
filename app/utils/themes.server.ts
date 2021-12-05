@@ -1,15 +1,13 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+export async function fetchThemes() {
+  const URL =
+    "https://raw.githubusercontent.com/anuraghazra/github-readme-stats/master/themes/index.js";
 
-const URL =
-  "https://raw.githubusercontent.com/anuraghazra/github-readme-stats/master/themes/index.js";
-
-export default async function handler(_: NextApiRequest, res: NextApiResponse) {
   const themesRes = await fetch(URL);
 
   const data = await themesRes.text();
   const themes = JSON.parse(parseThemes(data));
 
-  return res.json({ themes });
+  return themes;
 }
 
 function parseThemes(text: string) {

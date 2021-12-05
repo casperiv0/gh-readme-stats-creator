@@ -1,4 +1,4 @@
-import type { Values } from "types/Values";
+import type { Values } from "~/types/Values";
 
 export const GITHUB_URL = "https://github-readme-stats.vercel.app/api";
 
@@ -36,4 +36,42 @@ export function generateBadgeUrl(data: Values) {
   }
 
   return `${url}?${searchParams.toString()}`;
+}
+
+export function parseValues(data: URLSearchParams): Values {
+  const numberKeys: (keyof Values)[] = ["line-height"];
+  const booleanKeys: (keyof Values)[] = [
+    "show-icons",
+    "disable-animations",
+    "count-private-contributions",
+    "include-all-commits",
+    "hide-rank",
+    "hide-title",
+  ];
+  const stringKeys: (keyof Values)[] = ["github-username", "theme", "custom-title"];
+
+  const obj = {};
+
+  numberKeys.map((key) => {
+    const v = data.get(key);
+    if (v) {
+      obj[key] = parseInt(v);
+    }
+  });
+
+  booleanKeys.map((key) => {
+    const v = data.get(key);
+    if (v === "") {
+      obj[key] = true;
+    }
+  });
+
+  stringKeys.map((key) => {
+    const v = data.get(key);
+    if (v) {
+      obj[key] = v;
+    }
+  });
+
+  return obj as Values;
 }

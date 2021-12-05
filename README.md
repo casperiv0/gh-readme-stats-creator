@@ -4,5 +4,5 @@ Create a [GitHub README stat card](https://github.com/anuraghazra/github-readme-
 
 ## What I learned
 
-- Formik usage
+- Usage of Remix.run
 - Better understanding of tailwindcss

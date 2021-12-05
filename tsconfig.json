@@ -32,10 +32,7 @@
 
     "baseUrl": ".",
     "paths": {
-      "lib/*": ["./src/lib/*"],
-      "styles/*": ["./src/styles/*"],
-      "components/*": ["./src/components/*"],
-      "types/*": ["./src/types/*"]
+      "~/*": ["./app/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
